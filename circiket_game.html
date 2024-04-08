@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>circket game</title>
+  <style>
+    body{
+      text-align: center;
+      background-color: wheat;
+      background-image: url(cricket.jpg);
+      background-size: cover;
+    }
+    p{
+      font-size: 4rem;
+      font-weight: bold;
+  
+    }
+    button{
+      width: 100px;
+      height: 30px;
+      margin-left: 5px;
+      margin-top: 0px;
+      font-weight: bold;
+      font-size: 1rem;
+      border: 2px solid rgb(1, 31, 1);
+    }
+    h1{
+      background-color: aliceblue;
+      margin-top: 280px;
+      margin-left: 120px;
+      margin-right: 120px;
+      
+    
+    }
+
+  </style>
+</head>
+<body>
+  <p>🏏 Bat Ball Stump Game</p>
+  
+  
+  <button onclick="
+  let computerChoice =generateComputerChoice()
+  let result = getResult('Bat',computerChoice);
+  Showresult('Bat',computerChoice,result)
+ 
+ ">Bat</button>
+ 
+ 
+  <button onclick="
+  computerChoice =generateComputerChoice()
+  result = getResult('Ball',computerChoice);
+  Showresult('Ball',computerChoice,result)
+
+ 
+">Ball</button>
+  
+ 
+ 
+  <button onclick="
+   computerChoice =generateComputerChoice()
+   result = getResult('Stump',computerChoice);
+   Showresult('Stump',computerChoice,result)
+
+  
+ ">Stump</button>
+
+
+
+  <h1 id='matchResult'></h1>
+
+  <script>
+    function generateComputerChoice(){
+      let computerChoice;
+      let randomNumber= Math.random()*3;
+      if (randomNumber > 0 && randomNumber <=1 ){
+      return 'Bat';
+      }
+       else if (randomNumber >1 && randomNumber <=2)
+      {
+      return'Ball'; 
+      }
+       else{
+      return 'Stump'
+     }
+
+    }
+
+    function getResult(userMove, computerMove){
+      if (userMove ==='Bat'){
+        if (computerMove === 'Ball')  {
+        return 'User won';
+      }else if (computerMove === 'Bat'){
+        return `It's a tie`;
+      }else if (computerMove === 'Stump'){
+        return`computer won`;
+      }
+     }else if (userMove ==='Ball'){
+        if (computerChoice === 'Ball'){
+         return `It's a tie`;
+      }else if (computerChoice === 'Bat'){
+        return `computer won`;
+      }else if (computerChoice === 'Stump'){
+        return `User won`;
+      }
+    }else if  (userMove ==='Stump'){
+      if (computerChoice === 'Ball')  {
+        return `user won`;
+      }else if (computerChoice === 'Bat'){
+        return 'computer won';
+      }else if (computerChoice === 'Stump'){
+        return `It's a tie`;
+      }
+    } 
+    }
+    function Showresult(userMove,computerChoice,result){
+      document.querySelector('#matchResult').innerText =(`You have chosen ${userMove}. Computer Choice is ${computerChoice} and ${result}`)
+    }
+
+  </script>
+  
+</body>
+</html> 
